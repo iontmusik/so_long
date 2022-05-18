@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtorre-s <jtorre-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 17:18:59 by jtorre-s          #+#    #+#             */
-/*   Updated: 2022/05/10 18:21:30 by jtorre-s         ###   ########.fr       */
+/*   Created: 2022/05/18 17:22:45 by jtorre-s          #+#    #+#             */
+/*   Updated: 2022/05/18 19:26:50 by jtorre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include "get_next_line.h"
-# include "libft.h"
+# include "./libft/libft.h"
 
 //IMAGE
 typedef struct s_img
@@ -60,18 +60,15 @@ typedef struct s_pj
 
 }			t_pj;
 
-int		walls_len_ok(char **map);
-int		verify_comps(char **map_split, t_map *map);
-int		walls_ok(char **map_split, t_map *map);
-int		comps_ok(char **map_split, t_map *map);
-int		count_collect(char **map);
-void	map_check(char **map_split);
-char	**print_map(char **map);
+int		walls_len_ok(t_map *map);
+int		verify_comps(t_map *map);
+int		walls_ok(t_map *map);
 void	init_map(t_map *map);
-int		valid_map(char **map_split);
+int		valid_map(char *name, t_map *map);
 int		map_name(char *name);
 void	print_map(t_map *map);
 void	print_img(t_map *map);
+char	**read_map(t_map *map, char *argv);
 
 //BUFFER_SIZE
 # define BUFFER_SIZE 1
@@ -80,7 +77,7 @@ void	print_img(t_map *map);
 # define FLOOR		"./sprites/floor.xpm"
 # define COLLECT	"./sprites/coleccionable.xpm"
 # define DOOR		"./sprites/puerta.xpm"
-# define WALL		"./sprites/muro.xpm";
-# define PJ			"./sprites/personaje.xpm";
+# define WALL		"./sprites/muro.xpm"
+# define PJ			"./sprites/personaje.xpm"
 
 #endif
