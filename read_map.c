@@ -6,23 +6,27 @@
 /*   By: jtorre-s <jtorre-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:07:35 by jtorre-s          #+#    #+#             */
-/*   Updated: 2022/05/18 19:17:08 by jtorre-s         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:34:52 by jtorre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**read_map(t_map *map, char *argv)
+int	error_map(void)
+{
+	printf(ANSI_COLOR_RED "Error\nMAPA INVALIDO!\n");
+	return (0);
+}
+
+void	read_map(t_map *map, char *argv)
 {
 	int		text_map;
 	char	*aux;
 	char	*concat;
-/* 	int		i;
-	
-	i = 0; */
+
 	text_map = open(argv, O_RDONLY);
 	if (text_map == -1)
-		return (0);
+		exit (error_map());
 	concat = ft_strdup("");
 	while (1)
 	{
@@ -30,21 +34,13 @@ char	**read_map(t_map *map, char *argv)
 		if (!map->str_map)
 			break ;
 		aux = ft_substr(concat, 0, ft_strlen(concat));
- 		free(concat);
+		free(concat);
 		concat = ft_strjoin(aux, map->str_map);
 		free(aux);
 		free(map->str_map);
 	}
 	free(map->str_map);
-	map->str_map = ft_substr(concat, 0, ft_strlen(concat));
+	map->map_split = ft_split(concat, '\n');
 	free(concat);
-	map->map_split = ft_split(map->str_map, '\n');
-	free(map->str_map);
-/* 	while (i < 6)
-	{
-		printf("%s", map->map_split[i]);
-		i++;
-	} */
 	close(text_map);
-	return (map->map_split);
 }

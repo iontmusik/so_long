@@ -6,7 +6,7 @@
 /*   By: jtorre-s <jtorre-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:44:30 by jtorre-s          #+#    #+#             */
-/*   Updated: 2022/05/18 21:20:23 by jtorre-s         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:14:16 by jtorre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	verify_comps(t_map *map)
 				return (0);
 		}
 	}
-	if (map->collect > 0 && map->door > 0 && map->pj > 0)
+	if (map->collect > 0 && map->door == 1 && map->pj == 1)
 		return (1);
 	return (0);
 }
@@ -76,37 +76,13 @@ int	walls_ok(t_map *map)
 				map->map_split[map->col_len][row] != '1' ||
 				map->map_split[col][0] != '1' ||
 				map->map_split[col][map->row_len] != '1')
-				return (printf("%c", map->map_split[0][row]), 0);
+				return (0);
 			row++;
 		}
 		col++;
 	}
 	return (1);
 }
-
-/* int	comps_ok(t_map map)
-{
-	int	col;
-	int	row;
-
-	col = 0;
-	row = 0;
-	while (map->map_split[col])
-	{
-		while (map->map_split[col][row])
-		{
-			if (map->map_split[col][row] != '0' &&
-				map->map_split[col][row] != 'C' &&
-				map->map_split[col][row] != 'E' &&
-				map->map_split[col][row] != 'P' &&
-				map->map_split[col][row] != '1')
-				return (0);
-			row++;
-		}
-		col++;
-	}
-	return (0);
-} */
 
 int	map_name(char *name)
 {
@@ -115,8 +91,16 @@ int	map_name(char *name)
 	if (!name)
 		return (0);
 	str = ft_strrchr(name, '.');
-	if (strcmp(str, ".ber") == 0)
+	if (ft_strcmp(str, ".ber") == 0)
 		return (1);
 	else
 		return (0);
+}
+
+int	max_map(t_map *map)
+{
+	if (map->row_len > 46 || map->col_len > 24)
+		return (0);
+	else
+		return (1);
 }

@@ -6,22 +6,16 @@
 /*   By: jtorre-s <jtorre-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:52:50 by jtorre-s          #+#    #+#             */
-/*   Updated: 2022/05/06 14:10:36 by jtorre-s         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:39:39 by jtorre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-/*#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <limits.h>*/
 
 int	ft_strchr_gnl(char *str, int c)
 {
-	ssize_t	i;
-	ssize_t	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = ft_strlen_gnl(str);
